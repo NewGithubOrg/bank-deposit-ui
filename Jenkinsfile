@@ -8,7 +8,7 @@ node('docker-cloud') {
     checkout scm
     sh 'mvn -Dmaven.repo.local=/data/mvn/repo clean package'
     stash name: 'pom', includes: 'pom.xml'
-    stash name: 'war-dockerfile', includes: '**/target/*.war,**/target/Dockerfile'
+    stash name: 'jar-dockerfile', includes: '**/target/*.jar,**/target/Dockerfile'
 
     //get new version of application from pom
     def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
